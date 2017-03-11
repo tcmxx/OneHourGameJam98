@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class GamePlayUI : MonoBehaviour {
 	public static GamePlayUI gamePlayUI;
 
+
+	public GameObject gameOverPanel;
+
 	void Awake(){
 		gamePlayUI = this;
 	}
@@ -28,5 +31,9 @@ public class GamePlayUI : MonoBehaviour {
 
 	public void Quit(){
 		SceneManager.LoadScene ("MenuScene");
+	}
+
+	public void ShowGameOver(){
+		gameOverPanel.SetActive (true);
 	}
 }
