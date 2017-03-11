@@ -6,7 +6,7 @@ public class Egg : MonoBehaviour {
 
 	public SpriteRenderer rend;
 	public Sprite spriteBroken;
-
+	public Sprite spriteNormal;
 	// Use this for initialization
 	void Start () {
 		
@@ -29,6 +29,7 @@ public class Egg : MonoBehaviour {
 	public void Lose(){
 		rend.sprite = spriteBroken;
 		GetComponent <CircleCollider2D>().enabled = false;
+		GetComponent <Rigidbody2D> ().simulated = false;
 		GameController.Instance.OnBreakEgg ();
 	}
 }

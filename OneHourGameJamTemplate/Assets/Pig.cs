@@ -42,6 +42,7 @@ public class Pig : MonoBehaviour {
 
 
 	private void ObtainEgg(GameObject egg){
+		egg.GetComponent <Egg>().rend.sprite = egg.GetComponent <Egg>().spriteNormal;
 		AudioSource.PlayClipAtPoint (getEggAudio,transform.position);
 		egg.transform.SetParent (transform);
 		curreetEgg = egg;
