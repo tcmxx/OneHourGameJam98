@@ -46,7 +46,13 @@ public class GameController : MonoBehaviour {
 		Vector3 pos = dir?birdPos1.position:birdPos2.position;
 		Bird b = GameObject.Instantiate (birdPref,pos, Quaternion.identity).GetComponent <Bird>();
 		b.StartMove (4,!dir);
-		Invoke ("SpawnBird",5.0f);
+		if (eggsGotten < 10) {
+			Invoke ("SpawnBird", 6.0f);
+		} else if (eggsGotten < 20) {
+			Invoke ("SpawnBird", 5.0f);
+		} else {
+			Invoke ("SpawnBird", 4.0f);
+		}
 	}
 
 

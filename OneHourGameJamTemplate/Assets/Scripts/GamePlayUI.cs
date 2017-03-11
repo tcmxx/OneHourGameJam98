@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GamePlayUI : MonoBehaviour {
 	public static GamePlayUI gamePlayUI;
 
-
+	public Text scoreText;
 	public GameObject gameOverPanel;
-
+	public Text endGameSCoreText;
 	void Awake(){
 		gamePlayUI = this;
 	}
@@ -20,7 +21,7 @@ public class GamePlayUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		scoreText.text = "Eggs: " + GameController.Instance.eggsGotten;
 	}
 
 
@@ -35,5 +36,6 @@ public class GamePlayUI : MonoBehaviour {
 
 	public void ShowGameOver(){
 		gameOverPanel.SetActive (true);
+		endGameSCoreText.text = "Total Eggs: " + GameController.Instance.eggsGotten;
 	}
 }
