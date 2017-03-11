@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MenuUI : MonoBehaviour {
+public class GameController : MonoBehaviour {
+
+	public static GameController Instance;
+
+	void Awake(){
+		Instance = this;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -13,14 +18,5 @@ public class MenuUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-	}
-
-
-	public void StartGame(){
-		SceneManager.LoadScene ("GameScene");
-	}
-
-	public void ExitGame(){
-		Application.Quit ();
 	}
 }
