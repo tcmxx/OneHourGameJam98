@@ -11,6 +11,13 @@ public class Pig : MonoBehaviour {
 	private bool moving = false;
 	public float lerpT;
 	private GameObject curreetEgg;
+
+	public SpriteRenderer rend;
+	public Sprite pigMove;
+	public Sprite pigNormal;
+
+	public AudioClip getEggAudio;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -35,6 +42,7 @@ public class Pig : MonoBehaviour {
 
 
 	private void ObtainEgg(GameObject egg){
+		AudioSource.PlayClipAtPoint (getEggAudio,transform.position);
 		egg.transform.SetParent (transform);
 		curreetEgg = egg;
 		egg.GetComponent <Rigidbody2D>().simulated = false;
@@ -46,6 +54,7 @@ public class Pig : MonoBehaviour {
 
 	public void JumpAt(Vector3 pos){
 		if (moving == false) {
+			rend.sprite = pigMove;
 			target = pos;
 			target.y = transform.position.y;
 			target.z = transform.position.z;
@@ -57,19 +66,21 @@ public class Pig : MonoBehaviour {
 
 	IEnumerator PigJumpCoroutine(){
 		moving = true;
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (2.5f);
 		moving = false;
 		transform.position = Random.Range (0.0f, 1.0f) > 0.7f ? initialPos2.position : initialPos1.position;
+		rend.sprite = pigNormal;
 	}
 
 	IEnumerator PigReturnCoroutine(){
 		moving = true;
 		target = Random.Range (0.0f, 1.0f) > 0.7f ? initialPos2.position : initialPos1.position;
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (0.6f);
 		moving = false;
 		transform.position = target;
 		GameController.Instance.eggsGotten++;
 		GameObject.Destroy (curreetEgg);
+		rend.sprite = pigNormal;
 
 	}
 

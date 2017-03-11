@@ -11,6 +11,9 @@ public class Bird : MonoBehaviour {
 	float distMoved;
 	bool dropped;
 	public GameObject eggPref;
+
+	public AudioClip dropSound;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -35,6 +38,7 @@ public class Bird : MonoBehaviour {
 	}
 
 	private void Drop(){
+		AudioSource.PlayClipAtPoint (dropSound,transform.position);
 		dropped = true;
 		GameObject.Instantiate (eggPref,transform.position, Quaternion.identity);
 	}
